@@ -43,13 +43,13 @@ void heapSort(vector<int>arr, int n)
 
 int main()
 {
-    int n;
-    cin >> n;
-    vector <int>arr(n);
+    int k;
+    cin >> k;
+    vector <int>arr(k);
     auto start = chrono::steady_clock::now();
 
 
-    heapSort(arr, n);
+    heapSort(arr, k);
     auto end = chrono::steady_clock::now();
     cout << "Elapsed time in seconds: "
         << chrono::duration_cast<chrono::seconds>(end - start).count()
