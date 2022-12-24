@@ -53,9 +53,9 @@ int main()
         arr[i] = b;
     }
     heapSort(arr, k);
-    auto end = chrono::steady_clock::now();
-    cout << "Elapsed time in seconds: "
-        << chrono::duration_cast<chrono::seconds>(end - start).count()
-        << " sec";
+    for (int i = 0; i<l;i++){
+    cout << arr[i] << endl;
+    }
+    
 }
 
