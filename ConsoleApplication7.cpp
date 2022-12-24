@@ -46,9 +46,12 @@ int main()
     int k;
     cin >> k;
     vector <int>arr(k);
-    auto start = chrono::steady_clock::now();
-
-
+      auto start = chrono::steady_clock::now();
+    for (int i = 0; i<k; ++k){
+        int b;
+        b = rand();
+        arr[i] = b;
+    }
     heapSort(arr, k);
     auto end = chrono::steady_clock::now();
     cout << "Elapsed time in seconds: "
