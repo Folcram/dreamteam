@@ -3,12 +3,10 @@
 #include <chrono>
 using namespace std;
 
-int main()
-{
-   
-        int n;
+void InsertionSort(){
+  int n;
         cin >> n;
-        int* array = new int[n];
+        int* arr = new int[n];
 
         for (int i = 0; i < n; i++)
         {
@@ -16,21 +14,27 @@ int main()
         }
         for (int k = 1; k < n; k++)
         {
-            int temp = array[k];
+            int temp = arr[k];
             int j = k - 1;
             while (j >= 0 && temp <= array[j])
             {
-                array[j + 1] = array[j];
+                arr[j + 1] = arr[j];
                 j = j - 1;
             }
-            array[j + 1] = temp;
+            arr[j + 1] = temp;
         }
 
         for (int i = 0; i < n; i++)
         {
-            cout << array[i] << endl;
+            cout << arr[i] << endl;
         }
-   }
+
+}
+
+int main()
+{
+   InsertionSort();     
+}
 
 
 
