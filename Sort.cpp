@@ -148,7 +148,7 @@ void heapify(int* arr, int n, int root)
         heapify(arr, n, largest);
     }
 }
-void heapSort(vector<int>arr, int n)
+void heapSort()
 {
       int n;
     cin >> n;
