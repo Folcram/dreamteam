@@ -1,4 +1,5 @@
 #include <iostream>
+#include <chrono>
 using namespace std;
 //Сортировка Шелла
 void shellSort(int* arr, const int& n)
@@ -9,32 +10,32 @@ void shellSort(int* arr, const int& n)
         {
             int temp = arr[i];
             int j;
-            for (j = i; j >= shag && arr[j - l] > temp; j -= shag)
+            for (j = i; j >= shag && arr[j - shag] > temp; j -= shag)
             {
                 arr[j] = arr[j - shag];
             }
             arr[j] = temp;
         }
-    } 
+    }
 }
-// доп. функция для сортировки слиянием п
-void merge(int* arr, int low, cont int& high, int mid)
+// доп. функция для сортировки слиянием
+void merge(int* arr, int low, int high, int mid)
 {
     int i, j, k;
     int* c = new int[high];
     i = low;
     k = low;
     j = mid + 1;
-    while (i <= mid && j <= high) 
+    while (i <= mid && j <= high)
     {
-        if (arr[i] < arr[j]) 
+        if (arr[i] < arr[j])
         {
             c[k] = arr[i];
             //эти счетчики необходимы для смены индекса элемента сотрируемого массива
             k++;
             i++;
         }
-        else 
+        else
         {
             c[k] = arr[j];
             //эти счетчики необходимы для смены индекса элемента сотрируемого массива
@@ -42,28 +43,28 @@ void merge(int* arr, int low, cont int& high, int mid)
             j++;
         }
     }
-    while (i <= mid) 
+    while (i <= mid)
     {
         c[k] = arr[i];
         k++;
         i++;
     }
-    while (j <= high) 
+    while (j <= high)
     {
         c[k] = arr[j];
         k++;
         j++;
     }
-    for (i = low; i < k; i++) 
+    for (i = low; i < k; i++)
     {
         arr[i] = c[i];
     }
 }
 // сортировка слиянием
-void merge_sorting(int* arr, int low, int high)
+void merge_sorting(int* arr, int low,  int high)
 {
     int mid;
-    if (low < high) 
+    if (low < high)
     {
         mid = (low + high) / 2;
         merge_sorting(arr, low, mid);
@@ -78,7 +79,7 @@ void InsertionSort(int* arr, const int& n)
     {
         int temp = arr[k];
         int j = k - 1;
-        while (j >= 0 && temp <= array[j])
+        while (j >= 0 && temp <= arr[j])
         {
             arr[j + 1] = arr[j];
             j = j - 1;
@@ -87,7 +88,7 @@ void InsertionSort(int* arr, const int& n)
     }
 }
 // доп. функция для быстрой сортировки
-int partition(int* arr, const int& start,const int& end)
+int partition(int* arr, const int& start, const int& end)
 {
     int pivot = arr[end];
     int pIndex = start;
@@ -105,7 +106,8 @@ int partition(int* arr, const int& start,const int& end)
 // функция  быстрой сортировки
 void quicksort(int* arr, int start, int end)
 {
-    if (start >= end) 
+    
+    if (start >= end)
     {
         return;
     }
@@ -132,7 +134,7 @@ void heapify(int* arr, int n, int root)
 // функция  пирамидальной сортировки
 void heapSort(int* arr, const int& n)
 {
-    for (int i = n / 2 - 1; i >= 0; i--) 
+    for (int i = n / 2 - 1; i >= 0; i--)
     {
         heapify(arr, n, i);
     }
@@ -141,64 +143,230 @@ void heapSort(int* arr, const int& n)
         swap(arr[0], arr[i]);
         heapify(arr, i, 0);
     }
-    for (int i = 0; i < l; i++) 
+    for (int i = 0; i < n; i++)
     {
         cout << arr[i] << endl;
     }
 }
 int main()
- {
-         // Рандомим размер и элементы массива
-        int size = rand();
-        int* arr = new int[size];
-        for (int i = 0; i < size(); i++) 
+{
+    // Рандомим размер и элементы массива
+    int size;
+     size = rand();
+    int* arr = new int[size];
+    for (int i = 0; i < size; i++)
+    {
+        arr[i] = rand();
+    }
+    int numbermenu;
+    setlocale(LC_ALL, "Rus");
+    cout << "Введите номер сотрировки:" << endl;
+    cout << "1 - heapsort" <<  endl;
+    cout << "2 - quicksort" <<  endl;
+    cout << "3 - InsertionSort" << endl;
+    cout << "4 - MergeSort" << endl;
+    cout << "5 - ShellSort" << endl;
+    // В зависимости от набраного numbermenu в switch-case вызвается функция сортировки
+    cin >> numbermenu;
+    switch (numbermenu)
+    {
+    case 1:
         {
-            arr[i] = rand();
-        }
-        int numbermenu;
-        setlocale(LC_ALL, "Rus");
-        cout << "Введите номер сотрировки:" << endl;
-        cout << "1 - heapsort" << end;
-        cout << "2 - quicksort" << end;
-        cout << "3 - InsertionSort" << end;
-        cout << "4 - MergeSort" << endl;
-        cout << "5 - ShellSort" << endl;
-        // В зависимости от набраного numbermenu в switch-case вызвается функция сортировки
-        cin >> numbermenu;
-        switch (numbermenu) 
+        char otvet;
+        cout << "хотите вызвать сортировку 10к раз y/n" << endl;
+        cin >> otvet;
+        
+        if (otvet == 'y')
         {
-            case 1
+            auto startobh = std::chrono::steady_clock::now();
+            for (int i = 0; i < 10000; i++) 
             {
+               
+                int size;
+                size = rand();
+                int* arr = new int[size];
+                for (int i = 0; i < size; i++)
+                {
+                    arr[i] = rand();
+                }
+                auto start = std::chrono::steady_clock::now();
                 heapSort(arr, size);
-                break;
+                auto end = std::chrono::steady_clock::now();
+                std::cout << "время сортировки: " << std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count() << "mс" << endl;
             }
-            case 2 
-            {
-                quicksort(arr, 0, size - 1);
-                break;
-            }
-            case 3
-            {
-                InsertionSort(arr, size);
-                break;
-            }
-            case 4 
-            {
-                merge_sorting(arr, 0, size - 1);
-                break;
-            }
-            case 5 
-            {
-                shellSort(arr, size);
-                break;
-            }
-            // если выбран не тот номер то вызывается ошибка
-            default 
-            {
-                cout << "Ошибка" << endl;
-            }
+            auto endobh = std::chrono::steady_clock::now();
+            std::cout << " Общее время сортировки: " << std::chrono::duration_cast<std::chrono::milliseconds>(endobh - startobh).count() << "mс" << endl;
+            break;
         }
-        return 0;
+        else 
+        {
+            auto startobh = std::chrono::steady_clock::now();
+            heapSort(arr, size);
+            auto endobh = std::chrono::steady_clock::now();
+            std::cout << " время сортировки: " << std::chrono::duration_cast<std::chrono::milliseconds>(endobh - startobh).count() << "mс" << endl;
+            break;
+        }
+        }
+    case 2:
+        {
+        char otvet;
+        cout << "хотите вызвать сортировку 10к раз y/n" << endl;
+        cin >> otvet;
+
+        if (otvet == 'y')
+        {
+            auto startobh = std::chrono::steady_clock::now();
+            for (int i = 0; i < 10000; i++) 
+            {
+
+                int size;
+                size = rand();
+                int* arr = new int[size];
+                for (int i = 0; i < size; i++)
+                {
+                    arr[i] = rand();
+                }
+                auto start = std::chrono::steady_clock::now();
+                quicksort(arr, 0, size -1);
+                auto end = std::chrono::steady_clock::now();
+                std::cout << "время сортировки: " << std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count() << "mс" << endl;
+            }
+            auto endobh = std::chrono::steady_clock::now();
+            std::cout << " Общее время сортировки: " << std::chrono::duration_cast<std::chrono::milliseconds>(endobh - startobh).count() << "mс" << endl;
+            break;
+        }
+        else 
+        {
+            auto startobh = std::chrono::steady_clock::now();
+            quicksort(arr, 0, size - 1);
+            auto endobh = std::chrono::steady_clock::now();
+            std::cout << " время сортировки: " << std::chrono::duration_cast<std::chrono::microseconds>(endobh - startobh).count() << "mкс";
+            break;
+        }
+            
+        }
+    case 3:
+        {
+        char otvet;
+        cout << "хотите вызвать сортировку 10к раз y/n" << endl;
+        cin >> otvet;
+
+        if (otvet == 'y')
+        {
+            auto startobh = std::chrono::steady_clock::now();
+            for (int i = 0; i < 10000; i++)
+            {
+
+                int size;
+                size = rand();
+                int* arr = new int[size];
+                for (int i = 0; i < size; i++)
+                {
+                    arr[i] = rand();
+                }
+                auto start = std::chrono::steady_clock::now();
+                InsertionSort(arr, size);
+                auto end = std::chrono::steady_clock::now();
+                std::chrono::duration<double> sec = end - start;
+                std::cout << "время сортировки: " << std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count() << "mс" << endl;
+            }
+            auto endobh = std::chrono::steady_clock::now();
+            std::cout << " Общее время сортировки: " << std::chrono::duration_cast<std::chrono::milliseconds>(endobh - startobh).count() << "mс" << endl;
+       
+            break;
+        }
+        else
+        {
+            auto startobh = std::chrono::steady_clock::now();
+            InsertionSort(arr, size);
+            auto endobh = std::chrono::steady_clock::now();
+            std::cout << "время сортировки: " << std::chrono::duration_cast<std::chrono::milliseconds>(endobh - startobh).count() << "mc";
+            break;
+        }
+        }
+    case 4:
+        {
+        char otvet;
+        cout << "хотите вызвать сортировку 10к раз y/n" << endl;
+        cin >> otvet;
+
+        if (otvet == 'y')
+        {
+            auto startobh = std::chrono::steady_clock::now();
+            for (int i = 0; i < 10000; i++)
+            {
+
+                int size;
+                size = rand();
+                int* arr = new int[size];
+                for (int i = 0; i < size; i++)
+                {
+                    arr[i] = rand();
+                }
+                auto start = std::chrono::steady_clock::now();
+                merge_sorting(arr, 0, size - 1);
+                auto end = std::chrono::steady_clock::now();
+                std::cout << " Общее время сортировки: " << std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count() << "mс" << endl;
+            }
+            auto endobh = std::chrono::steady_clock::now();
+            std::cout << " Общее время сортировки: " << std::chrono::duration_cast<std::chrono::milliseconds>(endobh - startobh).count() << "с" << endl;
+            break;
+        }
+        else
+        {
+            auto startobh = std::chrono::steady_clock::now();
+            merge_sorting(arr, 0, size -1);
+            auto endobh = std::chrono::steady_clock::now();
+            std::cout << "время сортировки: " << std::chrono::duration_cast<std::chrono::milliseconds>(endobh - startobh).count() << "mс" << endl;
+            break;
+        }
+        }
+    case 5:
+        {
+        char otvet;
+        cout << "хотите вызвать сортировку 10к раз y/n" << endl;
+        cin >> otvet;
+
+        if (otvet == 'y')
+        {
+            auto startobh = std::chrono::steady_clock::now();
+            for (int i = 0; i < 10000; i++)
+            {
+
+                int size;
+                size = rand();
+                int* arr = new int[size];
+                for (int i = 0; i < size; i++)
+                {
+                    arr[i] = rand();
+                }
+                auto start = std::chrono::steady_clock::now();
+                shellSort(arr, size);
+                auto end = std::chrono::steady_clock::now();
+                std::cout << " время сортировки: " << std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count() << "mс" << endl;
+            }
+            auto endobh = std::chrono::steady_clock::now();
+            
+            std::cout << "Общее время сортировки: " << std::chrono::duration_cast<std::chrono::milliseconds>( endobh - startobh).count() << "mс" << endl;
+            break;
+        }
+        else
+        {
+            auto startobh = std::chrono::steady_clock::now();
+            shellSort(arr, size);
+            auto endobh = std::chrono::steady_clock::now();
+            std::chrono::duration<double> sec = endobh - startobh;
+            std::cout << "время сортировки: " << std::chrono::duration_cast<std::chrono::milliseconds>(endobh - startobh).count() << "mс" << endl;
+            break;
+        }
+        }
+        // если выбран не тот номер то вызывается ошибка
+    default:
+        {
+            cout << "Ошибка" << endl;
+        }
+    }
+    return 0;
 }
 
 
