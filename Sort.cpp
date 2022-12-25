@@ -2,6 +2,31 @@
 #include <chrono>
 #include <iostream>
 using namespace std;
+void shellSort()
+{
+    int n;
+    cin >> n;
+    int* arr = new int[n];
+    for (int i = 0; i < n; i++)
+        arr[i] = rand();
+    for (int l = n / 2; l > 0; l /= 2)
+    {
+        for (int i = l; i < n; i += 1)
+        {
+            int temp = arr[i];
+
+            int j;
+            for (j = i; j >= l && arr[j - l] > temp; j -= l)
+                arr[j] = arr[j - l];
+
+            arr[j] = temp;
+        }
+    }
+    for (int i = 0; i < n; ++i) {
+
+        cout << arr[i] << " ";
+    }
+}
 void merge(int* arr, int low, int high, int mid)
 {
     int i, j, k, c[50];
@@ -44,8 +69,8 @@ void merge_sorting(int* arr, int low, int high)
         merge(arr, low, high, mid);
     }
 }
-void mergesort(){
-int n;
+void mergesort() {
+    int n;
     cin >> n;
     int* arr = new int(n);
     for (int i = 0; i < n; i++) {
@@ -58,34 +83,34 @@ int n;
     }
 
 }
-void InsertionSort(){
-        int n;
-        cin >> n;
-        int* arr = new int[n];
+void InsertionSort() {
+    int n;
+    cin >> n;
+    int* arr = new int[n];
 
-        for (int i = 0; i < n; i++)
+    for (int i = 0; i < n; i++)
+    {
+        array[i] = rand();
+    }
+    for (int k = 1; k < n; k++)
+    {
+        int temp = arr[k];
+        int j = k - 1;
+        while (j >= 0 && temp <= array[j])
         {
-            array[i] = rand();
+            arr[j + 1] = arr[j];
+            j = j - 1;
         }
-        for (int k = 1; k < n; k++)
-        {
-            int temp = arr[k];
-            int j = k - 1;
-            while (j >= 0 && temp <= array[j])
-            {
-                arr[j + 1] = arr[j];
-                j = j - 1;
-            }
-            arr[j + 1] = temp;
-        }
+        arr[j + 1] = temp;
+    }
 
-        for (int i = 0; i < n; i++)
-        {
-            cout << arr[i] << endl;
-        }
+    for (int i = 0; i < n; i++)
+    {
+        cout << arr[i] << endl;
+    }
 
 }
-void quicksorting(){
+void quicksorting() {
     int n;
     cin >> n;
     int* a = new int[n];
@@ -117,14 +142,14 @@ int partition(int* arr, int start, int end)
 }
 
 void quicksort(int* arr, int start, int end)
-{ 
+{
     if (start >= end) {
         return;
-    } 
+    }
     int pivot = partition(arr, start, end);
 
     quicksort(arr, start, pivot - 1);
- 
+
     quicksort(arr, pivot + 1, end);
 }
 void heapify(int* arr, int n, int root)
@@ -150,10 +175,10 @@ void heapify(int* arr, int n, int root)
 }
 void heapSort()
 {
-      int n;
+    int n;
     cin >> n;
-   int* arr = new arr[n];  
-    for (int i = 0; i<n; n++){
+    int* arr = new arr[n];
+    for (int i = 0; i < n; n++) {
         int b;
         b = rand();
         arr[i] = b;
@@ -167,39 +192,48 @@ void heapSort()
 
         heapify(arr, i, 0);
     }
-     for (int i = 0; i<l;i++){
-    cout << arr[i] << endl;
-}
+    for (int i = 0; i < l; i++) {
+        cout << arr[i] << endl;
+    }
 
-int main()
-{
-  int k;
-  setlocale(LC_ALL, "Rus");
-  cout << "Введите номер сотрировки:" << endl;
-  cout << "1 - heapsort" << end;
-  cout << "2 - quicksort" << end;
-  cout << "3 - InsertionSort" << end;
-  cout << "4 - MergeSort" << endl;
-   cin >> k;
-     
-     switch(k){
-          case 1{
-            heapSort();
-            break;
-          }
-          case 2 {
-          quicksorting();
-          break;
-          }
-          case 3{
-          InsertionSort();
-          break;
-          }
-          case 4 {
-          mergesort();
-          break;
-          }
-     }        
-}
+    int main()
+    {
+        int k;
+        setlocale(LC_ALL, "Rus");
+        cout << "Введите номер сотрировки:" << endl;
+        cout << "1 - heapsort" << end;
+        cout << "2 - quicksort" << end;
+        cout << "3 - InsertionSort" << end;
+        cout << "4 - MergeSort" << endl;
+        cout << "5 - ShellSort" << endl;
+        cin >> k;
+
+        switch (k) {
+            case 1{
+                heapSort();
+                break;
+            }
+            case 2 {
+                quicksorting();
+                break;
+            }
+            case 3{
+                InsertionSort();
+                break;
+            }
+            case 4 {
+                mergesort();
+                break;
+            }
+            case 5 {
+                shellSort();
+                break;
+            }
+            default {           
+              cout << "Ошибка" << endl;
+            }
+        }
+    }
+
 
 
