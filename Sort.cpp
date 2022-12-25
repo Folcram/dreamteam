@@ -35,29 +35,31 @@ void merge(int* arr, int low, int high, int mid)
         arr[i] = c[i];
     }
 }
-void merge_sort(int* arr, int low, int high)
+void merge_sorting(int* arr, int low, int high)
 {
     int mid;
     if (low < high) {
         mid = (low + high) / 2;
-        merge_sort(arr, low, mid);
-        merge_sort(arr, mid + 1, high);
+        merge_sorting(arr, low, mid);
+        merge_sorting(arr, mid + 1, high);
         merge(arr, low, high, mid);
     }
 }
-
-int main()
-{
-    int n;
+void mergesort(){
+int n;
     cin >> n;
-    int* myarray = new int(n);
+    int* arr = new int(n);
     for (int i = 0; i < n; i++) {
-        myarray[i] = rand();
+        arr[i] = rand();
     }
-    merge_sort(myarray, 0, n - 1);
+    merge_sorting(arr, 0, n - 1);
     for (int i = 0; i < n; i++)
     {
-        cout << myarray[i] << endl;
+        cout << arr[i] << endl;
     }
-    system("pause");
+
+}
+int main()
+{
+  mergesort();  
 }
