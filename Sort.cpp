@@ -229,11 +229,11 @@ void heapSort()
                 shellSort();
                 break;
             }
-            default {
-            
-                cout << "Ошибка" << endl;
+            default {           
+              cout << "Ошибка" << endl;
             }
         }
     }
+
 
 
