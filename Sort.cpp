@@ -180,8 +180,7 @@ int main()
         {
             auto startobh = std::chrono::steady_clock::now();
             for (int i = 0; i < 10000; i++) 
-            {
-               
+            {          
                 int size;
                 size = rand();
                 int* arr = new int[size];
@@ -218,7 +217,6 @@ int main()
             auto startobh = std::chrono::steady_clock::now();
             for (int i = 0; i < 10000; i++) 
             {
-
                 int size;
                 size = rand();
                 int* arr = new int[size];
@@ -258,7 +256,6 @@ int main()
             auto startobh = std::chrono::steady_clock::now();
             for (int i = 0; i < 10000; i++)
             {
-
                 int size;
                 size = rand();
                 int* arr = new int[size];
@@ -297,7 +294,6 @@ int main()
             auto startobh = std::chrono::steady_clock::now();
             for (int i = 0; i < 10000; i++)
             {
-
                 int size;
                 size = rand();
                 int* arr = new int[size];
@@ -336,7 +332,6 @@ int main()
             auto startobh = std::chrono::steady_clock::now();
             for (int i = 0; i < 10000; i++)
             {
-
                 int size;
                 size = rand();
                 int* arr = new int[size];
