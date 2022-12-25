@@ -61,15 +61,15 @@ void merge(int* arr, int low, int high, int mid)
     }
 }
 // сортировка слиянием
-void merge_sorting(int* arr, int low,  int high)
+void merge_sorting(int* arr,   int high, int low = 0)
 {
     int mid;
     if (low < high)
     {
         mid = (low + high) / 2;
-        merge_sorting(arr, low, mid);
-        merge_sorting(arr, mid + 1, high);
-        merge(arr, low, high, mid);
+        merge_sorting(arr, mid, low);
+        merge_sorting(arr,  high, mid + 1);
+        merge(arr, low, mid,  high);
     }
 }
 // сортировка вставками
@@ -104,16 +104,16 @@ int partition(int* arr, const int& start, const int& end)
     return pIndex;
 }
 // функция  быстрой сортировки
-void quicksort(int* arr, int start, int end)
+void quicksort(int* arr, int end,  int start = 0)
 {
     
     if (start >= end)
     {
         return;
     }
-    int pivot = partition(arr, start, end);
-    quicksort(arr, start, pivot - 1);
-    quicksort(arr, pivot + 1, end);
+    int pivot = partition(arr,  end, start);
+    quicksort(arr, pivot - 1, start);
+    quicksort(arr, end, pivot + 1);
 }
 //доп. функция  пирамидальной сортировки
 void heapify(int* arr, int n, int root)
@@ -227,7 +227,8 @@ int main()
                     arr[i] = rand();
                 }
                 auto start = std::chrono::steady_clock::now();
-                quicksort(arr, 0, size -1);
+                size--;
+                quicksort(arr, size);
                 auto end = std::chrono::steady_clock::now();
                 std::cout << "время сортировки: " << std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count() << "mс" << endl;
             }
@@ -238,7 +239,8 @@ int main()
         else 
         {
             auto startobh = std::chrono::steady_clock::now();
-            quicksort(arr, 0, size - 1);
+            size--;
+            quicksort(arr, size);
             auto endobh = std::chrono::steady_clock::now();
             std::cout << " время сортировки: " << std::chrono::duration_cast<std::chrono::microseconds>(endobh - startobh).count() << "mкс";
             break;
@@ -304,7 +306,8 @@ int main()
                     arr[i] = rand();
                 }
                 auto start = std::chrono::steady_clock::now();
-                merge_sorting(arr, 0, size - 1);
+                size--;
+                merge_sorting(arr, size);
                 auto end = std::chrono::steady_clock::now();
                 std::cout << " Общее время сортировки: " << std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count() << "mс" << endl;
             }
@@ -315,7 +318,8 @@ int main()
         else
         {
             auto startobh = std::chrono::steady_clock::now();
-            merge_sorting(arr, 0, size -1);
+            size--;
+            merge_sorting(arr, size);
             auto endobh = std::chrono::steady_clock::now();
             std::cout << "время сортировки: " << std::chrono::duration_cast<std::chrono::milliseconds>(endobh - startobh).count() << "mс" << endl;
             break;
