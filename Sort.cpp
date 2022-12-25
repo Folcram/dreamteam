@@ -27,11 +27,16 @@ void heapify(vector<int>arr, int n, int root)
 
 void heapSort(vector<int>arr, int n)
 {
-
+      int n;
+    cin >> n;
+   int* arr = new arr[n];  
+    for (int i = 0; i<n; n++){
+        int b;
+        b = rand();
+        arr[i] = b;
+    }
     for (int i = n / 2 - 1; i >= 0; i--)
         heapify(arr, n, i);
-
-
     for (int i = n - 1; i >= 0; i--)
     {
 
@@ -39,23 +44,14 @@ void heapSort(vector<int>arr, int n)
 
         heapify(arr, i, 0);
     }
+     for (int i = 0; i<l;i++){
+    cout << arr[i] << endl;
 }
 
 int main()
 {
-    int k;
-    cin >> k;
-    vector <int>arr(k);
-      auto start = chrono::steady_clock::now();
-    for (int i = 0; i<k; ++k){
-        int b;
-        b = rand();
-        arr[i] = b;
-    }
-    heapSort(arr, k);
-    for (int i = 0; i<l;i++){
-    cout << arr[i] << endl;
-    }
+  
+    heapSort();
     
 }
 
